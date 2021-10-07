@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ParseUser.logOut();
+                //Intent i = new Intent(this, LoginActivity.class);
                 finish();
             }
         });

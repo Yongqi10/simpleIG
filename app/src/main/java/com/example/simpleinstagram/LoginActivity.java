@@ -10,10 +10,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
+import com.parse.Parse;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.parse.SignUpCallback;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -68,27 +70,27 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this,"username or password can not be empty",Toast.LENGTH_SHORT).show();
             return;
         }
-        saveUser(username,password);
+        createUser(username,password);
         goMainActivity();
         Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT);
     }
 
-    private void saveUser(String username,String password)
+    private void createUser(String username,String password)
     {
-        signUP signup = new signUP();
-        signup.setKEY_username(username);
-        signup.setKEY_password(password);
-        signup.saveInBackground(new SaveCallback() {
+        ParseUser user = new ParseUser();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {
                 if(e != null) {
-                    Log.e(TAG,"Error while saving",e);
+                    Log.e(TAG,"Error while creating ",e);
                     return;
                 }
-                Log.i(TAG,"Post save was successful");
+                Log.i(TAG,"User save was successful");
             }
-
         });
+
     }
 
     private void loginUser(String username, String password) {
