@@ -1,7 +1,7 @@
 package com.example.simpleinstagram;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etusername;
     private EditText etpassword;
     private Button btnLogin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +57,11 @@ public class LoginActivity extends AppCompatActivity {
                 goMainActivity();
                 Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT);
             }
+
         });
     }
+
+
 
     private void goMainActivity() {
         Intent i = new Intent(this, MainActivity.class);
